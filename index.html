@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nptel</title>
+    <style>
+        /* body {
+            display:flex; 
+            flex-direction:column; 
+            justify-content:center;
+            align-items: center;
+            min-height:100vh;
+        } */
+        #opt{
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div id="question">
+        </div>
+        <h4 id="opt"></h4>
+        <button onClick="nextQuestion()">Next</button>
+        <button onClick="checkOption()">Check</button>
+    </div>
+</body>
+<script src="data.js"></script>
+<script>
+    questions=arr;
+    var par=document.getElementById("question");
+    var option=document.getElementById("opt");
+    var que="";
+    function nextQuestion(){
+        var size=questions.length;
+        if(size==0){
+            par.innerHTML="<h1>END</h1>";
+            return;
+        }
+        var ind=Math.floor(Math.random()*size);
+        que=questions.splice(ind,1);
+        // console.log(que,ind,size);
+        var ele=`
+            <h3>${que[0].question}</h3>
+            <p>${que[0].option[0]}</p>
+            <p>${que[0].option[1]}</p>
+            <p>${que[0].option[2]}</p>
+            <p>${que[0].option[3]}</p>
+        `;
+        par.innerHTML=ele;
+        option.innerHTML="";
+    }
+    function checkOption(){
+        if(que=="" || questions.length==0)return;
+        option.innerHTML=que[0].correct;
+    }
+</script>
+</html>
